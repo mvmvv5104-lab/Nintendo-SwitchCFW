@@ -93,17 +93,29 @@
 			</div>
 			<div class="container">
 				<div class="menu">
-					<div class="outer" id="outer-google" up="nav" down="outer-links" onclick="touched(this.id)">
-						<div class="inner" id="one" onclick="populateData(this.id)"><svg class="svg-inline--fa fa-google fa-w-16" aria-hidden="true" data-fa-processed="" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" /></svg><!-- <i class="fab fa-google"></i> -->&#160;&#160;Inicio
+					<div class="outer" id="outer-google" up="nav" down="outer-url" onclick="touched(this.id)">
+						<div class="inner" id="one" onclick="populateData(this.id)"><i class="fas fa-home"></i>&#160;&#160;Inicio
 						</div>
 					</div>
-					<div class="outer" id="outer-links" up="outer-google" down="outer-settings" onclick="touched(this.id)">
-						<div class="inner" id="four" onclick="populateData(this.id)"><svg class="svg-inline--fa fa-link fa-w-16" aria-hidden="true" data-fa-processed="" data-prefix="fas" data-icon="link" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z" /></svg><!-- <i class="fas fa-link"></i> -->&#160;&#160;Aplicaciones
+					<div class="outer" id="outer-url" up="outer-google" down="outer-browse" onclick="touched(this.id)">
+						<div class="inner" id="two" onclick="populateData(this.id)"><i class="fas fa-gamepad"></i>&#160;&#160;Juegos HTML5
+						</div>
+					</div>
+					<div class="outer" id="outer-browse" up="outer-url" down="outer-survey" onclick="touched(this.id)">
+						<div class="inner" id="five" onclick="populateData(this.id)"><i class="fas fa-mobile-alt"></i>&#160;&#160;Emuladores
+						</div>
+					</div>
+					<div class="outer" id="outer-survey" up="outer-browse" down="outer-links" onclick="touched(this.id)">
+						<div class="inner" id="three" onclick="populateData(this.id)"><i class="fas fa-code"></i>&#160;&#160;Homebrew JS
+						</div>
+					</div>
+					<div class="outer" id="outer-links" up="outer-survey" down="outer-settings" onclick="touched(this.id)">
+						<div class="inner" id="four" onclick="populateData(this.id)"><i class="fas fa-folder"></i>&#160;&#160;Aplicaciones
 						</div>
 					</div>
 					<hr>
 					<div class="outer" id="outer-settings" up="outer-links" onclick="touched(this.id)">
-						<div class="inner" id="settings" onclick="populateData(this.id)"><svg class="svg-inline--fa fa-cog fa-w-16" aria-hidden="true" data-fa-processed="" data-prefix="fas" data-icon="cog" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M444.788 291.1l42.616 24.599c4.867 2.809 7.126 8.618 5.459 13.985-11.07 35.642-29.97 67.842-54.689 94.586a12.016 12.016 0 0 1-14.832 2.254l-42.584-24.595a191.577 191.577 0 0 1-60.759 35.13v49.182a12.01 12.01 0 0 1-9.377 11.718c-34.956 7.85-72.499 8.256-109.219.007-5.49-1.233-9.403-6.096-9.403-11.723v-49.184a191.555 191.555 0 0 1-60.759-35.13l-42.584 24.595a12.016 12.016 0 0 1-14.832-2.254c-24.718-26.744-43.619-58.944-54.689-94.586-1.667-5.366.592-11.175 5.459-13.985L67.212 291.1a193.48 193.48 0 0 1 0-70.199l-42.616-24.599c-4.867-2.809-7.126-8.618-5.459-13.985 11.07-35.642 29.97-67.842 54.689-94.586a12.016 12.016 0 0 1 14.832-2.254l42.584 24.595a191.577 191.577 0 0 1 60.759-35.13V25.759a12.01 12.01 0 0 1 9.377-11.718c34.956-7.85 72.499-8.256 109.219-.007 5.49 1.233 9.403 6.096 9.403 11.723v49.184a191.555 191.555 0 0 1 60.759 35.13l42.584-24.595a12.016 12.016 0 0 1 14.832 2.254c24.718 26.744 43.619 58.944 54.689 94.586 1.667 5.366-.592 11.175-5.459 13.985L444.788 220.9a193.485 193.485 0 0 1 0 70.2zM336 256c0-44.112-35.888-80-80-80s-80 35.888-80 80 35.888 80 80 80 80-35.888 80-80z" /></svg><!-- <i class="fas fa-cog"></i> -->&#160;&#160;Configuración
+						<div class="inner" id="settings" onclick="populateData(this.id)"><i class="fas fa-cog"></i>&#160;&#160;Configuración
 						</div>
 					</div>
 				</div>
@@ -196,12 +208,12 @@ Easier to visit on Computer: <a href="https://fortheusers.org/change" tabindex="
 							</div>
 						</form>
 						<br>
-						Enter a URL above and hit "Load Page".
+						Zona para juegos HTML5. Aquí puedes agregar juegos como Snake, Pong, Tetris o pruebas Canvas.
 					<span class="select-next" selectnext="url"></span></div>
 				</div>
 				<div id="tab-three">
-					<div><h2><svg class="svg-inline--fa fa-question-circle fa-w-16" aria-hidden="true" data-fa-processed="" data-prefix="far" data-icon="question-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z" /></svg><!-- <i class="far fa-question-circle"></i> --> SwitchWebCFW Dashboard Server Feedback</h2><br>
-					This is a survey to collect information on the usage of the SwitchWebCFW Dashboard Server (45.55.142.122).<br><br>
+					<div><h2><svg class="svg-inline--fa fa-question-circle fa-w-16" aria-hidden="true" data-fa-processed="" data-prefix="far" data-icon="question-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z" /></svg><!-- <i class="far fa-question-circle"></i> --> Homebrew JS</h2><br>
+					Espacio para cargar herramientas web, payloads JS seguros y pruebas de desarrollo dentro del navegador.<br><br>
 					<!--We have made some design changes recently, and would like to better understand how people use the DNS service.<br><br>-->
 					<font color="red"><b>The "This will now close" message and fact that videos don't work is Nintendo's decision! It is an intentional limitation added to the Switch's browser.</b></font> Please contact them and complain about these issues.<br><br>
 					For usage information, please visit the <a id="visit-website" href="http://switchbru.com/dns/" tabindex="-1" up="user-icon" left="outer-survey" down="survey">SwitchBru DNS website</a>.<br><br>
@@ -215,7 +227,7 @@ Easier to visit on Computer: <a href="https://fortheusers.org/change" tabindex="
 				<div id="tab-four">
 					<!-- HTML for custom links -->
 					<h3 class="custom-links">
-						Custom Links 
+						Aplicaciones 
 						<small>
 							<span class="edit-link-button">[<a id="custom-edit">Edit</a>]</span> 
 							<span class="edit-link-buttons" style="display: none;">[<a class="disabled" id="change-link" down="custom-1" left="outer-links" right="delete-links">Change</a> | 
@@ -236,7 +248,7 @@ Easier to visit on Computer: <a href="https://fortheusers.org/change" tabindex="
 		<div class="link custom-link" id="custom-9" left="custom-8" up="custom-6"><a tabindex="-1">Add</a></div>
 	</div>
 					<br>
-					<h3>Switch-related Links</h3>
+					<h3>Juegos HTML5 y aplicaciones</h3>
 					<div class="flex">
 						<div class="link"><a href="https://realdekkia.github.io/switch-tetris/" tabindex="-1">Play Tetris</a></div>
 						<div class="link"><a href="https://eshop-prices.com/" tabindex="-1">eShop Prices</a></div>
@@ -279,7 +291,7 @@ Easier to visit on Computer: <a href="https://fortheusers.org/change" tabindex="
 				<div id="tab-five">
 					<img src="./images/browsedns-logo.png" style="width: 70%; margin: auto; display: block; filter: drop-shadow(1px 1px 0 black) drop-shadow(-1px -1px 0 black);">
 					<br><br>
-					<strong>5 year DNS anniversary!</strong> We have launched a new service and community over at <a href="https://browsedns.net" tabindex="-1" id="browse-dns" left="outer-google" down="browse-info" up="user-icon">BrowseDNS.net</a>. Come join us there!<br><br>
+					<strong>Emuladores</strong><br>Zona para agregar emuladores hechos en JavaScript, HTML5 o WebAssembly.<br><br>
 
 					You can also try these new DNS addresses:<br>
 					US: <strong>45.55.112.11</strong><br>
