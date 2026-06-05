@@ -71,16 +71,9 @@
 			<div id="adtop">
 							</div>
 			<div class="nav">
-				<p class="ad" id="nav" down="outer-google" right="user-icon" onclick="populateData(this.id)">
+				<p class="ad" id="nav" down="outer-google" right="time" onclick="populateData(this.id)">
 					<svg id="icon" class="svg-inline--fa fa-hubspot fa-w-16" aria-hidden="true" data-fa-processed="" data-prefix="fab" data-icon="hubspot" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M267.4 211.6c-25.1 23.7-40.8 57.3-40.8 94.6 0 29.3 9.7 56.3 26 78L203.1 434c-4.4-1.6-9.1-2.5-14-2.5-10.8 0-20.9 4.2-28.5 11.8-7.6 7.6-11.8 17.8-11.8 28.6s4.2 20.9 11.8 28.5c7.6 7.6 17.8 11.6 28.5 11.6 10.8 0 20.9-3.9 28.6-11.6 7.6-7.6 11.8-17.8 11.8-28.5 0-4.2-.6-8.2-1.9-12.1l50-50.2c22 16.9 49.4 26.9 79.3 26.9 71.9 0 130-58.3 130-130.2 0-65.2-47.7-119.2-110.2-128.7V116c17.5-7.4 28.2-23.8 28.2-42.9 0-26.1-20.9-47.9-47-47.9S311.2 47 311.2 73.1c0 19.1 10.7 35.5 28.2 42.9v61.2c-15.2 2.1-29.6 6.7-42.7 13.6-27.6-20.9-117.5-85.7-168.9-124.8 1.2-4.4 2-9 2-13.8C129.8 23.4 106.3 0 77.4 0 48.6 0 25.2 23.4 25.2 52.2c0 28.9 23.4 52.3 52.2 52.3 9.8 0 18.9-2.9 26.8-7.6l163.2 114.7zm89.5 163.6c-38.1 0-69-30.9-69-69s30.9-69 69-69 69 30.9 69 69-30.9 69-69 69z" /></svg><!-- <i id="icon" class="fab fa-hubspot"></i> -->  <span class="title">SwitchWebCFW Dashboard</span>
 				</p>
-				<div class="no-user" id="user-icon" left="nav" onclick="selectUser()">
-					<div id="friends-online"><span></span></div>
-					<div class="no-user" id="icon-wrapper">
-						+
-					</div>
-				</div>
-				<div class="ad" id="user-text" style="display: none;">New User</div>
 				<div class="time">
 					<span id="time">11:17 PM</span>
 					<div id="timer-container" style="display: none;">
@@ -109,13 +102,8 @@
 						<div class="inner" id="three" onclick="populateData(this.id)"><i class="fas fa-code"></i>&#160;&#160;Homebrew JS
 						</div>
 					</div>
-					<div class="outer" id="outer-links" up="outer-survey" down="outer-settings" onclick="touched(this.id)">
+					<div class="outer" id="outer-links" up="outer-survey" onclick="touched(this.id)">
 						<div class="inner" id="four" onclick="populateData(this.id)"><i class="fas fa-folder"></i>&#160;&#160;Aplicaciones
-						</div>
-					</div>
-					<hr>
-					<div class="outer" id="outer-settings" up="outer-links" onclick="touched(this.id)">
-						<div class="inner" id="settings" onclick="populateData(this.id)"><i class="fas fa-cog"></i>&#160;&#160;Configuración
 						</div>
 					</div>
 				</div>
@@ -125,13 +113,11 @@
 					<br>
 					<div class="flex">
 						<div class="link" id="home-games" right="home-emus" down="home-homebrew" left="outer-google"><a href="#" tabindex="-1" onclick="populateData('two'); return false;">🎮 Juegos HTML5</a></div>
-						<div class="link" id="home-emus" left="home-games" right="home-apps" down="home-settings"><a href="#" tabindex="-1" onclick="populateData('five'); return false;">🕹️ Emuladores</a></div>
+						<div class="link" id="home-emus" left="home-games" right="home-apps" ><a href="#" tabindex="-1" onclick="populateData('five'); return false;">🕹️ Emuladores</a></div>
 						<div class="link" id="home-apps" left="home-emus"><a href="#" tabindex="-1" onclick="populateData('four'); return false;">📁 Aplicaciones</a></div>
-						<div class="link" id="home-homebrew" up="home-games" right="home-settings" left="outer-google"><a href="#" tabindex="-1" onclick="populateData('three'); return false;">💻 Homebrew JS</a></div>
-						<div class="link" id="home-settings" up="home-emus" left="home-homebrew"><a href="#" tabindex="-1" onclick="populateData('settings'); return false;">⚙️ Configuración</a></div>
+						<div class="link" id="home-homebrew" up="home-games"  left="outer-google"><a href="#" tabindex="-1" onclick="populateData('three'); return false;">💻 Homebrew JS</a></div>
 					</div>
 					<br>
-					<p>Estado: <strong>Alpha 0.1</strong> · Control: Joy-Con / Pro Controller vía Gamepad API.</p>
 				</div><span class="inputbuttons" style="display:none;"></span>
 			</div>
 			
@@ -148,10 +134,9 @@
 					<br>
 					<div class="flex">
 						<div class="link" id="inicio-juegos" left="outer-google" right="inicio-emuladores" down="inicio-homebrew"><a tabindex="-1" href="#" onclick="populateData('two'); return false;">🎮 Juegos HTML5</a></div>
-						<div class="link" id="inicio-emuladores" left="inicio-juegos" right="inicio-apps" down="inicio-config"><a tabindex="-1" href="#" onclick="populateData('five'); return false;">🕹️ Emuladores</a></div>
+						<div class="link" id="inicio-emuladores" left="inicio-juegos" right="inicio-apps" ><a tabindex="-1" href="#" onclick="populateData('five'); return false;">🕹️ Emuladores</a></div>
 						<div class="link" id="inicio-apps" left="inicio-emuladores"><a tabindex="-1" href="#" onclick="populateData('four'); return false;">📁 Aplicaciones</a></div>
-						<div class="link" id="inicio-homebrew" up="inicio-juegos" left="outer-google" right="inicio-config"><a tabindex="-1" href="#" onclick="populateData('three'); return false;">💻 Homebrew JS</a></div>
-						<div class="link" id="inicio-config" up="inicio-emuladores" left="inicio-homebrew"><a tabindex="-1" href="#" onclick="populateData('settings'); return false;">⚙️ Configuración</a></div>
+						<div class="link" id="inicio-homebrew" up="inicio-juegos" left="outer-google" ><a tabindex="-1" href="#" onclick="populateData('three'); return false;">💻 Homebrew JS</a></div>
 					</div>
 					<span class="select-next" selectnext="inicio-juegos"></span>
 				</div>
@@ -203,16 +188,6 @@
 						<div class="link" id="emu-test" up="emu-nes" left="emu-sms"><a tabindex="-1" href="./emulators/test/index.html">Emu Test</a></div>
 					</div>
 					<span class="select-next" selectnext="emu-gb"></span>
-				</div>
-
-				<div id="tab-settings">
-					<h2>⚙️ Configuración</h2>
-					<p><strong>SwitchWebCFW</strong> versión 0.1 Alpha.</p>
-					<p>Modo: navegador / DNS portal.</p>
-					<p>Objetivo: juegos HTML5, emuladores web y homebrew JS.</p>
-					<br>
-					<input type="submit" id="open-settings" value="Abrir Settings" onclick="openSettings()" tabindex="-1" up="user-icon" left="outer-settings">
-					<span class="select-next" selectnext="open-settings"></span>
 				</div>
 			</div>
 			<script src="./scripts/settings.js"></script>
