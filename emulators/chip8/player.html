@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>SwitchWebCFW CHIP-8 Player</title>
+<style>
+body{margin:0;background:#050505;color:white;font-family:Arial,sans-serif;text-align:center;overflow:hidden;touch-action:none;user-select:none}
+header{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:#111;border-bottom:1px solid #333;box-sizing:border-box}
+#title{font-size:19px;font-weight:bold}.hint{font-size:14px;color:#bbb}
+canvas{display:block;margin:14px auto 8px auto;background:#000;border:3px solid #fff;max-width:95vw;max-height:70vh;image-rendering:pixelated}
+#status{font-size:15px;color:#ccc;margin:4px}.buttons{margin-top:8px}.buttons a,.buttons button{background:#222;color:#fff;border:1px solid #555;border-radius:8px;padding:10px 14px;text-decoration:none;margin:4px;font-size:16px}
+#pad{display:grid;grid-template-columns:repeat(4,58px);gap:6px;justify-content:center;margin-top:8px}.k{background:#1f1f1f;border:1px solid #555;border-radius:8px;padding:12px 0;color:white;font-size:18px}.k.on{background:#0a84ff}
+</style>
+</head>
+<body>
+<header>
+  <div id="title">CHIP-8</div>
+  <div class="hint">B: volver · A: seleccionar</div>
+</header>
+<canvas id="screen" width="640" height="320"></canvas>
+<div id="status">Cargando...</div>
+<div class="buttons"><a href="index.html">Volver a ROMs</a><button onclick="location.reload()">Reiniciar</button></div>
+<div id="pad"></div>
+<script src="chip8-core.js"></script>
+<script>
+(function(){
+  document.addEventListener('contextmenu', e=>e.preventDefault());
+  document.addEventListener('selectstart', e=>e.preventDefault());
+  document.addEventListener('dragstart', e=>e.preventDefault());
+  window.addEventListener('keydown', e=>{
+    if(['Backspace','Escape','BrowserBack','BrowserForward','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','Enter'].includes(e.key)){
+      e.preventDefault(); e.stopPropagation();
+    }
+  }, true);
+  history.pushState(null,'',location.href);
+  window.addEventListener('popstate',()=>history.pushState(null,'',location.href));
+})();
+
+const keyMap = {
+  '1':0x1,'2':0x2,'3':0x3,'4':0xC,
+  'q':0x4,'w':0x5,'e':0x6,'r':0xD,
+  'a':0x7,'s':0x8,'d':0x9,'f':0xE,
+  'z':0xA,'x':0x0,'c':0xB,'v':0xF
+};
+
+const padOrder = [1,2,3,12,4,5,6,13,7,8,9,14,10,0,11,15];
+const pad = document.getElementById('pad');
+padOrder.forEach(k=>{
+  const b=document.createElement('button');
+  b.className='k'; b.textContent=k.toString(16).toUpperCase(); b.id='key-'+k;
+  b.onmousedown=b.ontouchstart=function(e){e.preventDefault(); chip8.setKey(k,true); updatePad();};
+  b.onmouseup=b.onmouseleave=b.ontouchend=function(e){e.preventDefault(); chip8.setKey(k,false); updatePad();};
+  pad.appendChild(b);
+});
+function updatePad(){ padOrder.forEach(k=>document.getElementById('key-'+k).className='k '+(chip8.keys[k]?'on':'')); }
+
+const audioCtx = window.AudioContext ? new AudioContext() : null;
+let lastBeep = 0;
+function beep(){
+  if(!audioCtx) return;
+  const now = audioCtx.currentTime;
+  if(now - lastBeep < 0.08) return;
+  lastBeep = now;
+  const o=audioCtx.createOscillator(); const g=audioCtx.createGain();
+  o.frequency.value=440; g.gain.value=0.03; o.connect(g); g.connect(audioCtx.destination); o.start(); o.stop(now+0.04);
+}
+
+const chip8 = new Chip8(document.getElementById('screen'), beep);
+
+window.addEventListener('keydown', e=>{ const k=keyMap[e.key.toLowerCase()]; if(k!==undefined){chip8.setKey(k,true); updatePad();} });
+window.addEventListener('keyup', e=>{ const k=keyMap[e.key.toLowerCase()]; if(k!==undefined){chip8.setKey(k,false); updatePad();} });
+
+function gamepadLoop(){
+  const gp = navigator.getGamepads ? navigator.getGamepads()[0] : null;
+  if(gp){
+    // Mapeo simple para Switch Pro/Joy-Con en navegador: D-Pad o stick -> CHIP-8 2/4/6/8, A/B/X/Y -> 5/0/1/3
+    const ax0 = gp.axes[0] || 0, ax1 = gp.axes[1] || 0;
+    const pressed = i => gp.buttons[i] && gp.buttons[i].pressed;
+    chip8.setKey(0x2, pressed(12) || ax1 < -0.45);
+    chip8.setKey(0x8, pressed(13) || ax1 > 0.45);
+    chip8.setKey(0x4, pressed(14) || ax0 < -0.45);
+    chip8.setKey(0x6, pressed(15) || ax0 > 0.45);
+    chip8.setKey(0x5, pressed(0));
+    chip8.setKey(0x0, pressed(1));
+    chip8.setKey(0x1, pressed(2));
+    chip8.setKey(0x3, pressed(3));
+    updatePad();
+  }
+  requestAnimationFrame(gamepadLoop);
+}
+gamepadLoop();
+
+function mainLoop(){
+  for(let i=0;i<chip8.speed;i++) chip8.cycle();
+  chip8.render();
+  requestAnimationFrame(mainLoop);
+}
+setInterval(()=>chip8.tickTimers(), 1000/60);
+
+const params = new URLSearchParams(location.search);
+const rom = params.get('rom');
+document.getElementById('title').textContent = 'CHIP-8 · ' + (rom ? rom.split('/').pop() : 'Sin ROM');
+if(!rom){
+  document.getElementById('status').textContent='No se seleccionó ROM.';
+}else{
+  fetch(rom).then(r=>{
+    if(!r.ok) throw new Error('No se pudo cargar '+rom);
+    return r.arrayBuffer();
+  }).then(buf=>{
+    chip8.loadRom(buf);
+    document.getElementById('status').textContent='ROM cargada: '+buf.byteLength+' bytes';
+    mainLoop();
+  }).catch(err=>{
+    document.getElementById('status').textContent='Error: '+err.message;
+  });
+}
+</script>
+</body>
+</html>

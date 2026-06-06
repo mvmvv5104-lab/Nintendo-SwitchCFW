@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SwitchWebCFW CHIP-8</title>
+<style>
+body{background:#111;color:white;font-family:Arial;text-align:center}
+button{padding:14px 25px;font-size:20px;margin:15px}
+#roms{display:none}
+.rom{display:block;width:300px;margin:8px auto;padding:12px;background:#222;color:white;text-decoration:none;border-radius:8px;font-size:20px}
+.rom:hover,.rom:focus{background:#444}
+</style>
+</head>
+<body>
+
+<h1>CHIP-8</h1>
+
+<button onclick="mostrarRoms()">Seleccionar ROM</button>
+
+<div id="roms">
+<a class="rom" href="player.html?rom=roms/15PUZZLE">15PUZZLE</a>
+<a class="rom" href="player.html?rom=roms/BLINKY">BLINKY</a>
+<a class="rom" href="player.html?rom=roms/BLITZ">BLITZ</a>
+<a class="rom" href="player.html?rom=roms/BRIX">BRIX</a>
+<a class="rom" href="player.html?rom=roms/CONNECT4">CONNECT4</a>
+<a class="rom" href="player.html?rom=roms/GUESS">GUESS</a>
+<a class="rom" href="player.html?rom=roms/HIDDEN">HIDDEN</a>
+<a class="rom" href="player.html?rom=roms/INVADERS">INVADERS</a>
+<a class="rom" href="player.html?rom=roms/KALEID">KALEID</a>
+<a class="rom" href="player.html?rom=roms/MAZE">MAZE</a>
+<a class="rom" href="player.html?rom=roms/MERLIN">MERLIN</a>
+<a class="rom" href="player.html?rom=roms/MISSILE">MISSILE</a>
+<a class="rom" href="player.html?rom=roms/PONG">PONG</a>
+<a class="rom" href="player.html?rom=roms/PONG2">PONG2</a>
+<a class="rom" href="player.html?rom=roms/PUZZLE">PUZZLE</a>
+<a class="rom" href="player.html?rom=roms/SYZYGY">SYZYGY</a>
+<a class="rom" href="player.html?rom=roms/TANK">TANK</a>
+<a class="rom" href="player.html?rom=roms/TETRIS">TETRIS</a>
+<a class="rom" href="player.html?rom=roms/TICTAC">TICTAC</a>
+<a class="rom" href="player.html?rom=roms/UFO">UFO</a>
+<a class="rom" href="player.html?rom=roms/VBRIX">VBRIX</a>
+<a class="rom" href="player.html?rom=roms/VERS">VERS</a>
+<a class="rom" href="player.html?rom=roms/WIPEOFF">WIPEOFF</a>
+</div>
+
+<script>
+function mostrarRoms(){
+  document.getElementById("roms").style.display = "block";
+}
+</script>
+
+</body>
+</html>
