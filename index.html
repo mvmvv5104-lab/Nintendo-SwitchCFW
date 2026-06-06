@@ -1,262 +1,211 @@
-<html lang="en" class="fontawesome-i2svg-active fontawesome-i2svg-complete"><head>
-		<title>SwitchWebCFW Dashboard - Internet Browser with HTML5 games and homebrew for the Nintendo Switch</title> 
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<meta name="keywords" content="nintendo switch games homebrew wii gameboy 3ds switchbru fortheusers"> 
-		<meta name="description" content="Web portal for Nintendo Switch's Internet browser. Hosts HTML5 games and other useful bookmarks for use with the Nintendo Switch."> 
-		<script src="./scripts/jquery.min.js"></script>
-		<script src="./scripts/font-awesome.js"></script>
-		<script src="./scripts/gamepad.js"></script>
-		<script src="./scripts/pages.js"></script>
-		<script src="./scripts/user.js"></script>
-		<script>
-			// Redirects to Inicio
-			function google() {
-				window.location.href = "https://cse.google.com/cse?cx=a013d3bbc253f4f1c";
-			}
-		</script>
-<!-- Google tag (gtag.js) -->
-<script async src="/gtag/js"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<html lang="en">
+<head>
+  <title>SwitchWebCFW Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="keywords" content="switchwebcfw nintendo switch html5 games emulators javascript homebrew">
+  <meta name="description" content="SwitchWebCFW web dashboard for HTML5 games, lightweight web emulators and JavaScript homebrew on Nintendo Switch browser.">
 
-  var uniqueId = "073a87f499301e72ae1112a1748d3518";
-  var hasUserId = false;
+  <script src="./scripts/jquery.min.js"></script>
+  <script src="./scripts/font-awesome.js"></script>
+  <script src="./scripts/gamepad.js"></script>
+  <script src="./scripts/pages.js"></script>
+  <script src="./scripts/dns.js"></script>
+  <link rel="stylesheet" href="./styles/style.css">
 
-  gtag('config', 'G-R5W0J69V90', {
-          client_id: uniqueId,
-		  user_id: uniqueId,
-		  client_storage: 'none'
-	});
-	// tag whether we have a user id or not
-	gtag('set', 'hasUserId', hasUserId);
-	gtag('set', 'customUserId', uniqueId);
-</script>
-		<style type="text/css">svg:not(:root).svg-inline--fa{overflow:visible}.svg-inline--fa{display:inline-block;font-size:inherit;height:1em;overflow:visible;vertical-align:-.125em}.svg-inline--fa.fa-lg{vertical-align:-.225em}.svg-inline--fa.fa-w-1{width:.0625em}.svg-inline--fa.fa-w-2{width:.125em}.svg-inline--fa.fa-w-3{width:.1875em}.svg-inline--fa.fa-w-4{width:.25em}.svg-inline--fa.fa-w-5{width:.3125em}.svg-inline--fa.fa-w-6{width:.375em}.svg-inline--fa.fa-w-7{width:.4375em}.svg-inline--fa.fa-w-8{width:.5em}.svg-inline--fa.fa-w-9{width:.5625em}.svg-inline--fa.fa-w-10{width:.625em}.svg-inline--fa.fa-w-11{width:.6875em}.svg-inline--fa.fa-w-12{width:.75em}.svg-inline--fa.fa-w-13{width:.8125em}.svg-inline--fa.fa-w-14{width:.875em}.svg-inline--fa.fa-w-15{width:.9375em}.svg-inline--fa.fa-w-16{width:1em}.svg-inline--fa.fa-w-17{width:1.0625em}.svg-inline--fa.fa-w-18{width:1.125em}.svg-inline--fa.fa-w-19{width:1.1875em}.svg-inline--fa.fa-w-20{width:1.25em}.svg-inline--fa.fa-pull-left{margin-right:.3em;width:auto}.svg-inline--fa.fa-pull-right{margin-left:.3em;width:auto}.svg-inline--fa.fa-border{height:1.5em}.svg-inline--fa.fa-li{width:2em}.svg-inline--fa.fa-fw{width:1.25em}.fa-layers svg.svg-inline--fa{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.fa-layers{display:inline-block;height:1em;position:relative;text-align:center;vertical-align:-.125em;width:1em}.fa-layers svg.svg-inline--fa{-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter,.fa-layers-text{display:inline-block;position:absolute;text-align:center}.fa-layers-text{left:50%;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter{background-color:#ff253a;border-radius:1em;color:#fff;height:1.5em;line-height:1;max-width:5em;min-width:1.5em;overflow:hidden;padding:.25em;right:0;text-overflow:ellipsis;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-bottom-right{bottom:0;right:0;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom right;transform-origin:bottom right}.fa-layers-bottom-left{bottom:0;left:0;right:auto;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom left;transform-origin:bottom left}.fa-layers-top-right{right:0;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-top-left{left:0;right:auto;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top left;transform-origin:top left}.fa-lg{font-size:1.33333em;line-height:.75em;vertical-align:-.0667em}.fa-xs{font-size:.75em}.fa-sm{font-size:.875em}.fa-1x{font-size:1em}.fa-2x{font-size:2em}.fa-3x{font-size:3em}.fa-4x{font-size:4em}.fa-5x{font-size:5em}.fa-6x{font-size:6em}.fa-7x{font-size:7em}.fa-8x{font-size:8em}.fa-9x{font-size:9em}.fa-10x{font-size:10em}.fa-fw{text-align:center;width:1.25em}.fa-ul{list-style-type:none;margin-left:2.5em;padding-left:0}.fa-ul>li{position:relative}.fa-li{left:-2em;position:absolute;text-align:center;width:2em;line-height:inherit}.fa-border{border:solid .08em #eee;border-radius:.1em;padding:.2em .25em .15em}.fa-pull-left{float:left}.fa-pull-right{float:right}.fa.fa-pull-left,.fab.fa-pull-left,.fal.fa-pull-left,.far.fa-pull-left,.fas.fa-pull-left{margin-right:.3em}.fa.fa-pull-right,.fab.fa-pull-right,.fal.fa-pull-right,.far.fa-pull-right,.fas.fa-pull-right{margin-left:.3em}.fa-spin{-webkit-animation:fa-spin 2s infinite linear;animation:fa-spin 2s infinite linear}.fa-pulse{-webkit-animation:fa-spin 1s infinite steps(8);animation:fa-spin 1s infinite steps(8)}@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.fa-rotate-90{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.fa-rotate-180{-webkit-transform:rotate(180deg);transform:rotate(180deg)}.fa-rotate-270{-webkit-transform:rotate(270deg);transform:rotate(270deg)}.fa-flip-horizontal{-webkit-transform:scale(-1,1);transform:scale(-1,1)}.fa-flip-vertical{-webkit-transform:scale(1,-1);transform:scale(1,-1)}.fa-flip-horizontal.fa-flip-vertical{-webkit-transform:scale(-1,-1);transform:scale(-1,-1)}:root .fa-flip-horizontal,:root .fa-flip-vertical,:root .fa-rotate-180,:root .fa-rotate-270,:root .fa-rotate-90{-webkit-filter:none;filter:none}.fa-stack{display:inline-block;height:2em;position:relative;width:2em}.fa-stack-1x,.fa-stack-2x{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.svg-inline--fa.fa-stack-1x{height:1em;width:1em}.svg-inline--fa.fa-stack-2x{height:2em;width:2em}.fa-inverse{color:#fff}.sr-only{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.sr-only-focusable:active,.sr-only-focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;width:auto}</style><link rel="stylesheet" href="./styles/style.css">
-	</head>
-	<!-- Start at dark theme for a smoother fade in -->
-	<body class="light">
-		<!-- Box for notifications when being shown -->
-		<div id="notification-box" style="display: none;">
-			<div id="notification-icon">
-				<div id="notification-icon-wrapper">
-					<img height="60" id="notification-image">
-				</div>
-			</div>
-			<span class="notification-message"></span>
-			<span class="inner-message"></span>
-		</div>
-		<!-- Transparent overlay -->
-		<div id="overlay" style="display: none;">
-			<div id="user-popup">
-				<div class="left">
-					<div id="popup-user">
-						<div id="popup-user-wrap">
-							<div class="best-icon" style="display: none;">
-								<svg class="svg-inline--fa fa-star fa-w-18 best" aria-hidden="true" data-fa-processed="" data-prefix="fas" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z" /></svg><!-- <i class="fas fa-star best"></i> -->
-							</div>
-							<img id="popup-user-image">
-						</div>
-					</div>
-					<div class="popup-username"></div>
-					<div id="show-buttons">
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Main Page -->
-		<div class="active-page" id="main-page">
-			<div id="adtop">
-							</div>
-			<div class="nav">
-				<p class="ad" id="nav" down="outer-google" right="time" onclick="populateData(this.id)">
-					<svg id="icon" class="svg-inline--fa fa-hubspot fa-w-16" aria-hidden="true" data-fa-processed="" data-prefix="fab" data-icon="hubspot" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M267.4 211.6c-25.1 23.7-40.8 57.3-40.8 94.6 0 29.3 9.7 56.3 26 78L203.1 434c-4.4-1.6-9.1-2.5-14-2.5-10.8 0-20.9 4.2-28.5 11.8-7.6 7.6-11.8 17.8-11.8 28.6s4.2 20.9 11.8 28.5c7.6 7.6 17.8 11.6 28.5 11.6 10.8 0 20.9-3.9 28.6-11.6 7.6-7.6 11.8-17.8 11.8-28.5 0-4.2-.6-8.2-1.9-12.1l50-50.2c22 16.9 49.4 26.9 79.3 26.9 71.9 0 130-58.3 130-130.2 0-65.2-47.7-119.2-110.2-128.7V116c17.5-7.4 28.2-23.8 28.2-42.9 0-26.1-20.9-47.9-47-47.9S311.2 47 311.2 73.1c0 19.1 10.7 35.5 28.2 42.9v61.2c-15.2 2.1-29.6 6.7-42.7 13.6-27.6-20.9-117.5-85.7-168.9-124.8 1.2-4.4 2-9 2-13.8C129.8 23.4 106.3 0 77.4 0 48.6 0 25.2 23.4 25.2 52.2c0 28.9 23.4 52.3 52.2 52.3 9.8 0 18.9-2.9 26.8-7.6l163.2 114.7zm89.5 163.6c-38.1 0-69-30.9-69-69s30.9-69 69-69 69 30.9 69 69-30.9 69-69 69z" /></svg><!-- <i id="icon" class="fab fa-hubspot"></i> -->  <span class="title">SwitchWebCFW Dashboard</span>
-				</p>
-				<div class="time">
-					<span id="time">11:17 PM</span>
-					<div id="timer-container" style="display: none;">
-						<a tabindex="-1" href="https://browsedns.net/topic/1545/switch-countdown-timer-added">
-							Time Left - <span id="timer">0:00</span>
-						</a>
-					</div>
-				</div>
-				<span class="next" down="outer-google" up="outer-google" left="outer-google" right="outer-google"></span>
-			</div>
-			<div class="container">
-				<div class="menu">
-					<div class="outer" id="outer-google" up="nav" down="outer-url" onclick="touched(this.id)">
-						<div class="inner" id="one" onclick="populateData(this.id)"><i class="fas fa-home"></i>&#160;&#160;Inicio
-						</div>
-					</div>
-					<div class="outer" id="outer-url" up="outer-google" down="outer-browse" onclick="touched(this.id)">
-						<div class="inner" id="two" onclick="populateData(this.id)"><i class="fas fa-gamepad"></i>&#160;&#160;Juegos HTML5
-						</div>
-					</div>
-					<div class="outer" id="outer-browse" up="outer-url" down="outer-survey" onclick="touched(this.id)">
-						<div class="inner" id="five" onclick="populateData(this.id)"><i class="fas fa-mobile-alt"></i>&#160;&#160;Emuladores
-						</div>
-					</div>
-					<div class="outer" id="outer-survey" up="outer-browse" down="outer-links" onclick="touched(this.id)">
-						<div class="inner" id="three" onclick="populateData(this.id)"><i class="fas fa-code"></i>&#160;&#160;Homebrew JS
-						</div>
-					</div>
-					<div class="outer" id="outer-links" up="outer-survey" onclick="touched(this.id)">
-						<div class="inner" id="four" onclick="populateData(this.id)"><i class="fas fa-folder"></i>&#160;&#160;Aplicaciones
-						</div>
-					</div>
-				</div>
-				<div class="main" id="content" tabindex="-1">
-					<h2>Bienvenido a SwitchWebCFW</h2>
-					<p><strong>SwitchWebCFW</strong> es un dashboard web para Nintendo Switch pensado para ejecutar juegos HTML5, emuladores web livianos y herramientas homebrew hechas en JavaScript.</p>
-					<br>
-					<div class="flex">
-						<div class="link" id="home-games" right="home-emus" down="home-homebrew" left="outer-google"><a href="#" tabindex="-1" onclick="populateData('two'); return false;">🎮 Juegos HTML5</a></div>
-						<div class="link" id="home-emus" left="home-games" right="home-apps" ><a href="#" tabindex="-1" onclick="populateData('five'); return false;">🕹️ Emuladores</a></div>
-						<div class="link" id="home-apps" left="home-emus"><a href="#" tabindex="-1" onclick="populateData('four'); return false;">📁 Aplicaciones</a></div>
-						<div class="link" id="home-homebrew" up="home-games"  left="outer-google"><a href="#" tabindex="-1" onclick="populateData('three'); return false;">💻 Homebrew JS</a></div>
-					</div>
-					<br>
-				</div><span class="inputbuttons" style="display:none;"></span>
-			</div>
-			
-			<!-- User Page, Settings, etc. -->
-			<div id="second-page" style="display: none;">
-			</div>
-			
-			<!-- Different tabs are located in the HTML, to allow search indexing. Toggled via JS in dns.js -->
-			<div id="sections" style="display: none;">
-				<div id="tab-one">
-					<h2>Inicio</h2>
-					<p>Bienvenido a <strong>SwitchWebCFW</strong>, un entorno web experimental para Nintendo Switch.</p>
-					<p>Desde aquí puedes abrir juegos HTML5, emuladores web livianos, aplicaciones y pruebas homebrew hechas con JavaScript.</p>
-					<br>
-					<div class="flex">
-						<div class="link" id="inicio-juegos" left="outer-google" right="inicio-emuladores" down="inicio-homebrew"><a tabindex="-1" href="#" onclick="populateData('two'); return false;">🎮 Juegos HTML5</a></div>
-						<div class="link" id="inicio-emuladores" left="inicio-juegos" right="inicio-apps" ><a tabindex="-1" href="#" onclick="populateData('five'); return false;">🕹️ Emuladores</a></div>
-						<div class="link" id="inicio-apps" left="inicio-emuladores"><a tabindex="-1" href="#" onclick="populateData('four'); return false;">📁 Aplicaciones</a></div>
-						<div class="link" id="inicio-homebrew" up="inicio-juegos" left="outer-google" ><a tabindex="-1" href="#" onclick="populateData('three'); return false;">💻 Homebrew JS</a></div>
-					</div>
-					<span class="select-next" selectnext="inicio-juegos"></span>
-				</div>
+  <script>
+    function google() {
+      window.location.href = "https://cse.google.com/cse?cx=a013d3bbc253f4f1c";
+    }
+  </script>
+</head>
 
-				<div id="tab-two">
-					<h2>🎮 Juegos HTML5</h2>
-					<p>Juegos hechos en HTML5, Canvas y JavaScript para probar rendimiento y controles dentro del navegador de la Switch.</p>
-					<div class="flex">
-						<div class="link" id="game-snake" left="outer-url" right="game-pong" down="game-test"><a tabindex="-1" href="./games/snake/index.html">Snake</a></div>
-						<div class="link" id="game-pong" left="game-snake" right="game-tetris" down="game-canvas"><a tabindex="-1" href="./games/pong/index.html">Pong</a></div>
-						<div class="link" id="game-tetris" left="game-pong"><a tabindex="-1" href="./games/tetris/index.html">Tetris</a></div>
-						<div class="link" id="game-test" left="outer-url" up="game-snake" right="game-canvas"><a tabindex="-1" href="./games/controller-test/index.html">Gamepad Test</a></div>
-						<div class="link" id="game-canvas" up="game-pong" left="game-test"><a tabindex="-1" href="./games/canvas-test/index.html">Canvas Test</a></div>
-					</div>
-					<span class="select-next" selectnext="game-snake"></span>
-				</div>
+<body class="light">
+  <div class="active-page" id="main-page">
+    <div id="adtop"></div>
 
-				<div id="tab-three">
-					<h2>💻 Homebrew JS</h2>
-					<p>Herramientas experimentales hechas con JavaScript para funcionar dentro del navegador oculto de Nintendo Switch.</p>
-					<div class="flex">
-						<div class="link" id="hb-gamepad" left="outer-survey" right="hb-webgl"><a tabindex="-1" href="./homebrew/gamepad/index.html">Gamepad Inspector</a></div>
-						<div class="link" id="hb-webgl" left="hb-gamepad"><a tabindex="-1" href="./homebrew/webgl-test/index.html">WebGL Test</a></div>
-					</div>
-					<span class="select-next" selectnext="hb-gamepad"></span>
-				</div>
+    <div class="nav">
+      <p class="ad" id="nav" down="outer-google" onclick="populateData('one')">
+        <i id="icon" class="fas fa-home"></i>
+        <span class="title">SwitchWebCFW Dashboard</span>
+      </p>
 
-				<div id="tab-four">
-					<h2>📁 Aplicaciones</h2>
-					<p>Utilidades web para el dashboard SwitchWebCFW.</p>
-					<div class="flex">
-						<div class="link" id="app-browser" left="outer-links" right="app-notes" down="app-links"><a tabindex="-1" href="https://cse.google.com/cse?cx=a013d3bbc253f4f1c">Navegador Web</a></div>
-						<div class="link" id="app-notes" left="app-browser" right="app-calc" down="app-clock"><a tabindex="-1" href="./apps/notepad/index.html">Bloc de notas</a></div>
-						<div class="link" id="app-calc" left="app-notes"><a tabindex="-1" href="./apps/calculator/index.html">Calculadora</a></div>
-						<div class="link" id="app-links" up="app-browser" left="outer-links" right="app-clock"><a tabindex="-1" href="./apps/links/index.html">Links útiles</a></div>
-						<div class="link" id="app-clock" up="app-notes" left="app-links"><a tabindex="-1" href="./apps/clock/index.html">Reloj</a></div>
-					</div>
-					<span class="select-next" selectnext="app-browser"></span>
-				</div>
+      <div class="time">
+        <span id="time">00:00</span>
+      </div>
 
-				<div id="tab-five">
-					<h2>🕹️ Emuladores</h2>
-					<p>Zona para emuladores web livianos hechos en JavaScript o WebAssembly. El rendimiento dependerá del navegador de la Switch.</p>
-					<div class="flex">
-						<div class="link" id="emu-gb" left="outer-browse" right="emu-nes" down="emu-sms"><a tabindex="-1" href="./emulators/gb/index.html">Game Boy</a></div>
-						<div class="link" id="emu-nes" left="emu-gb" right="emu-chip8" down="emu-test"><a tabindex="-1" href="./emulators/nes/index.html">NES</a></div>
-						<div class="link" id="emu-chip8" left="emu-nes"><a tabindex="-1" href="./emulators/chip8/index.html">CHIP-8</a></div>
-						<div class="link" id="emu-sms" up="emu-gb" left="outer-browse" right="emu-test"><a tabindex="-1" href="./emulators/sms/index.html">Master System</a></div>
-						<div class="link" id="emu-test" up="emu-nes" left="emu-sms"><a tabindex="-1" href="./emulators/test/index.html">Emu Test</a></div>
-					</div>
-					<span class="select-next" selectnext="emu-gb"></span>
-				</div>
-			</div>
-			<script src="./scripts/settings.js"></script>
-			<script src="./scripts/dns.js"></script>
-			<script>
-				if (navigator.userAgent.indexOf('WifiWebAuthApplet') >= 0) { 
-					document.getElementById("timer-container").style.display = "block";
-				} else {
-					document.getElementById("timer-container").style.display = "none";
-				}
-				function startTimer() {
-					// check if a start time has been previously noted
-					if (window.localStorage.getItem('startTime') == null) {
-						// Local storage isn't persisted between sessions, so if we don't have
-						// a start time, we're likely in a new session. Set the start time to now.
-						window.localStorage.setItem('startTime', new Date().getTime());
-					}
-					// grab that start time
-					var startTime = window.localStorage.getItem('startTime');
-				
-					// and the current time
-					var presentTime = new Date().getTime()
-				
-					// calculate the difference between the two, and that's how long our session has been
-					var diff = presentTime - startTime;
-				
-					// 20 minutes is 1200000 milliseconds (20 * 60 * 1000)
-					var maxSessionLength = 1200000;
-				
-					// subtract the time difference from the max session length to get the remaining time
-					var timeRemaining = maxSessionLength - diff;
-				
-					// if the remaining time is negative, just set it to 0
-					if (timeRemaining < 0) {
-						timeRemaining = 0;
-					}
-				
-					// convert the remaining time to minutes and seconds
-					var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-					var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-				
-					// update the display span with the remaining time, and pad the seconds with a 0 if needed
-					document.getElementById("timer").innerHTML = minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
-				}
-				
-				// run the timer logic once, and then repeat every second (1000 ms)
-				startTimer();
-				setInterval(startTimer, 1000);
-			</script>
-		
-	
-			<script>
-				// SwitchWebCFW: evita que los scripts antiguos cambien el título superior a "Google".
-				(function(){
-					function fixSwitchWebCFWTitle(){
-						var title = document.querySelector('.nav .title');
-						if (title) title.textContent = 'SwitchWebCFW Dashboard';
-					}
-					var originalPopulateData = window.populateData;
-					if (typeof originalPopulateData === 'function') {
-						window.populateData = function(id){
-							var result = originalPopulateData.apply(this, arguments);
-							setTimeout(fixSwitchWebCFWTitle, 0);
-							return result;
-						};
-					}
-					fixSwitchWebCFWTitle();
-					setInterval(fixSwitchWebCFWTitle, 500);
-				})();
-			</script>
+      <span class="next" down="outer-google" up="outer-google" left="outer-google" right="outer-google"></span>
+    </div>
 
-</body></html>
+    <div class="container">
+      <div class="menu">
+        <div class="outer" id="outer-google" up="nav" down="outer-url" onclick="touched(this.id)">
+          <div class="inner" id="one" onclick="populateData(this.id)"><i class="fas fa-home"></i>&#160;&#160;Inicio</div>
+        </div>
+
+        <div class="outer" id="outer-url" up="outer-google" down="outer-browse" onclick="touched(this.id)">
+          <div class="inner" id="two" onclick="populateData(this.id)"><i class="fas fa-gamepad"></i>&#160;&#160;Juegos HTML5</div>
+        </div>
+
+        <div class="outer" id="outer-browse" up="outer-url" down="outer-survey" onclick="touched(this.id)">
+          <div class="inner" id="five" onclick="populateData(this.id)"><i class="fas fa-mobile-alt"></i>&#160;&#160;Emuladores</div>
+        </div>
+
+        <div class="outer" id="outer-survey" up="outer-browse" down="outer-links" onclick="touched(this.id)">
+          <div class="inner" id="three" onclick="populateData(this.id)"><i class="fas fa-code"></i>&#160;&#160;Homebrew JS</div>
+        </div>
+
+        <div class="outer" id="outer-links" up="outer-survey" down="outer-links" onclick="touched(this.id)">
+          <div class="inner" id="four" onclick="populateData(this.id)"><i class="fas fa-folder"></i>&#160;&#160;Aplicaciones</div>
+        </div>
+      </div>
+
+      <div class="main" id="content" tabindex="-1">
+        <h2>Bienvenido a SwitchWebCFW</h2>
+        <p><strong>SwitchWebCFW</strong> es un dashboard web para Nintendo Switch pensado para ejecutar juegos HTML5, emuladores web livianos y herramientas homebrew hechas en JavaScript.</p>
+        <br>
+        <div class="flex">
+          <div class="link" id="home-games" right="home-emus" down="home-homebrew" left="outer-google"><a href="#" tabindex="-1" onclick="populateData('two'); return false;">🎮 Juegos HTML5</a></div>
+          <div class="link" id="home-emus" left="home-games" right="home-apps"><a href="#" tabindex="-1" onclick="populateData('five'); return false;">🕹️ Emuladores</a></div>
+          <div class="link" id="home-apps" left="home-emus"><a href="#" tabindex="-1" onclick="populateData('four'); return false;">📁 Aplicaciones</a></div>
+          <div class="link" id="home-homebrew" up="home-games" left="outer-google"><a href="#" tabindex="-1" onclick="populateData('three'); return false;">💻 Homebrew JS</a></div>
+        </div>
+      </div>
+
+      <span class="inputbuttons" style="display:none;"></span>
+    </div>
+
+    <div id="second-page" style="display:none;"></div>
+
+    <div id="sections" style="display:none;">
+      <div id="tab-one">
+        <h2>Inicio</h2>
+        <p>Bienvenido a <strong>SwitchWebCFW</strong>, un entorno web experimental para Nintendo Switch.</p>
+        <p>Desde aquí puedes abrir juegos HTML5, emuladores web livianos, aplicaciones y pruebas homebrew hechas con JavaScript.</p>
+        <br>
+        <div class="flex">
+          <div class="link" id="inicio-juegos" left="outer-google" right="inicio-emuladores" down="inicio-homebrew"><a tabindex="-1" href="#" onclick="populateData('two'); return false;">🎮 Juegos HTML5</a></div>
+          <div class="link" id="inicio-emuladores" left="inicio-juegos" right="inicio-apps"><a tabindex="-1" href="#" onclick="populateData('five'); return false;">🕹️ Emuladores</a></div>
+          <div class="link" id="inicio-apps" left="inicio-emuladores"><a tabindex="-1" href="#" onclick="populateData('four'); return false;">📁 Aplicaciones</a></div>
+          <div class="link" id="inicio-homebrew" up="inicio-juegos" left="outer-google"><a tabindex="-1" href="#" onclick="populateData('three'); return false;">💻 Homebrew JS</a></div>
+        </div>
+        <span class="select-next" selectnext="inicio-juegos"></span>
+      </div>
+
+      <div id="tab-two">
+        <h2>🎮 Juegos HTML5</h2>
+        <p>Juegos hechos en HTML5, Canvas y JavaScript para probar rendimiento y controles dentro del navegador de la Switch.</p>
+        <div class="flex">
+          <div class="link" id="game-mario" left="outer-url" right="game-snake" down="game-test"><a tabindex="-1" href="./games/mario/index.html">Mario HTML5</a></div>
+          <div class="link" id="game-snake" left="game-mario" right="game-pong"><a tabindex="-1" href="./games/snake/index.html">Snake</a></div>
+          <div class="link" id="game-pong" left="game-snake" right="game-tetris"><a tabindex="-1" href="./games/pong/index.html">Pong</a></div>
+          <div class="link" id="game-tetris" left="game-pong"><a tabindex="-1" href="./games/tetris/index.html">Tetris</a></div>
+          <div class="link" id="game-test" left="outer-url" up="game-mario"><a tabindex="-1" href="./games/controller-test/index.html">Gamepad Test</a></div>
+        </div>
+        <span class="select-next" selectnext="game-mario"></span>
+      </div>
+
+      <div id="tab-three">
+        <h2>💻 Homebrew JS</h2>
+        <p>Herramientas experimentales hechas con JavaScript para funcionar dentro del navegador oculto de Nintendo Switch.</p>
+        <div class="flex">
+          <div class="link" id="hb-gamepad" left="outer-survey" right="hb-webgl"><a tabindex="-1" href="./homebrew/gamepad/index.html">Gamepad Inspector</a></div>
+          <div class="link" id="hb-webgl" left="hb-gamepad"><a tabindex="-1" href="./homebrew/webgl-test/index.html">WebGL Test</a></div>
+        </div>
+        <span class="select-next" selectnext="hb-gamepad"></span>
+      </div>
+
+      <div id="tab-four">
+        <h2>📁 Aplicaciones</h2>
+        <p>Utilidades web para el dashboard SwitchWebCFW.</p>
+        <div class="flex">
+          <div class="link" id="app-browser" left="outer-links" right="app-notes" down="app-links"><a tabindex="-1" href="https://cse.google.com/cse?cx=a013d3bbc253f4f1c">Navegador Web</a></div>
+          <div class="link" id="app-notes" left="app-browser" right="app-calc"><a tabindex="-1" href="./apps/notepad/index.html">Bloc de notas</a></div>
+          <div class="link" id="app-calc" left="app-notes"><a tabindex="-1" href="./apps/calculator/index.html">Calculadora</a></div>
+          <div class="link" id="app-links" up="app-browser" left="outer-links"><a tabindex="-1" href="./apps/links/index.html">Links útiles</a></div>
+        </div>
+        <span class="select-next" selectnext="app-browser"></span>
+      </div>
+
+      <div id="tab-five">
+        <h2>🕹️ Emuladores</h2>
+        <p>Zona para emuladores web livianos hechos en JavaScript o WebAssembly.</p>
+        <div class="flex">
+          <div class="link" id="emu-gb" left="outer-browse" right="emu-nes" down="emu-sms"><a tabindex="-1" href="./emulators/gb/index.html">Game Boy</a></div>
+          <div class="link" id="emu-nes" left="emu-gb" right="emu-chip8" down="emu-test"><a tabindex="-1" href="./emulators/nes/index.html">NES</a></div>
+          <div class="link" id="emu-chip8" left="emu-nes"><a tabindex="-1" href="./emulators/chip8/index.html">CHIP-8</a></div>
+          <div class="link" id="emu-sms" up="emu-gb" left="outer-browse" right="emu-test"><a tabindex="-1" href="./emulators/sms/index.html">Master System</a></div>
+          <div class="link" id="emu-test" up="emu-nes" left="emu-sms"><a tabindex="-1" href="./emulators/test/index.html">Emu Test</a></div>
+        </div>
+        <span class="select-next" selectnext="emu-gb"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // SwitchWebCFW: títulos correctos y menú limpio sin restos de SwitchBru.
+    (function(){
+      var titles = {
+        one: 'Inicio',
+        two: 'Juegos HTML5',
+        three: 'Homebrew JS',
+        four: 'Aplicaciones',
+        five: 'Emuladores',
+        nav: 'SwitchWebCFW Dashboard'
+      };
+
+      var selectedMap = {
+        one: 'outer-google',
+        two: 'outer-url',
+        three: 'outer-survey',
+        four: 'outer-links',
+        five: 'outer-browse'
+      };
+
+      var oldPopulate = window.populateData;
+      window.populateData = function(id){
+        var divLoad = true;
+        var selected = selectedMap[id] || 'outer-google';
+
+        if (id === 'nav') {
+          $('.title').html('SwitchWebCFW Dashboard');
+          return false;
+        }
+
+        if ($('#tab-' + id).length) {
+          $('#content').html($('#tab-' + id).html());
+          $('#content').scrollTop(0);
+          $('.next').attr('up', selected).attr('down', selected).attr('left', selected).attr('right', selected);
+          $('.inner').removeClass('inner-active');
+          $('#' + id).addClass('inner-active');
+          $('.title').html(titles[id] || 'SwitchWebCFW Dashboard');
+          history.pushState({page: 'same', tab: selected}, '', '');
+          return false;
+        }
+
+        if (typeof oldPopulate === 'function') {
+          return oldPopulate.apply(this, arguments);
+        }
+      };
+
+      // Modo juego suave: reduce acciones accidentales del navegador.
+      document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+      document.addEventListener('selectstart', function(e){ e.preventDefault(); });
+      document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+      window.addEventListener('keydown', function(e){
+        var blocked = ['Backspace','Escape','BrowserBack','BrowserForward','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','Enter'];
+        if (blocked.indexOf(e.key) !== -1) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+      }, true);
+      document.body.style.overscrollBehavior = 'none';
+      document.body.style.touchAction = 'none';
+
+      $('.title').html('SwitchWebCFW Dashboard');
+      $('#one').addClass('inner-active');
+    })();
+  </script>
+</body>
+</html>
