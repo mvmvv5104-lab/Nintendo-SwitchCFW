@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>SwitchWebCFW NES-JS Player</title>
+<script>
+// SwitchWebCFW NES Lite settings
+// Lower value = less work for slow browsers, but gameplay can slow down.
+// Try: 18000, 22000, 26000, or 29780 for normal timing.
+window.SWITCHWEB_NES_CYCLES = 22000;
+window.SWITCHWEB_NES_AUDIO_OFF = true;
+</script>
+<script src="nes.min.js"></script>
+<style>
+body{margin:0;background:#050505;color:white;font-family:Arial,sans-serif;text-align:center;overflow:hidden}
+#top{height:54px;display:flex;align-items:center;justify-content:center;gap:12px;background:#111;border-bottom:1px solid #333}
+#status{font-size:14px;opacity:.9}.btn{background:#222;border:1px solid #555;color:white;border-radius:8px;padding:8px 14px;text-decoration:none}.btn:focus,.btn:hover{background:#00a7e0;outline:none}
+canvas{margin-top:12px;width:512px;max-width:96vw;height:auto;image-rendering:pixelated;border:3px solid #444;background:#000}
+#error{color:#ff7777;padding:10px;white-space:pre-wrap}.help{font-size:12px;opacity:.65;margin-top:6px}
+</style>
+</head>
+<body>
+<div id="top"><a class="btn" href="index.html">Back</a><span id="status">Loading...</span></div>
+<canvas id="screen" width="256" height="240"></canvas>
+<div class="help">D-Pad / Left Stick = Move · A = A · B = B · + = Start · - = Select</div>
+<div id="error"></div>
+<script>
+(function(){
+  const params = new URLSearchParams(location.search);
+  const romPath = params.get('rom');
+  const status = document.getElementById('status');
+  const errorBox = document.getElementById('error');
+  const canvas = document.getElementById('screen');
+  const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+
+  let nes = null;
+  let lastButtons = {};
+  let romName = romPath ? decodeURIComponent(romPath.split('/').pop()) : 'No ROM';
+
+  function showError(msg){ errorBox.textContent = msg; status.textContent = 'Error'; }
+
+  if(!romPath) return showError('No ROM selected.');
+  if(!window.NesJs) return showError('NES-JS core missing. Put nes.min.js in this same folder.');
+
+  function setButton(name, pressed){
+    if(!nes || !nes.pad1 || !NesJs.Joypad) return;
+    const B = NesJs.Joypad.BUTTONS;
+    const map = {
+      A:B.A, B:B.B, SELECT:B.SELECT, START:B.START,
+      UP:B.UP, DOWN:B.DOWN, LEFT:B.LEFT, RIGHT:B.RIGHT
+    };
+    const btn = map[name];
+    if(btn === undefined) return;
+    if(lastButtons[name] === pressed) return;
+    lastButtons[name] = pressed;
+    if(pressed) nes.pad1.pressButton(btn); else nes.pad1.releaseButton(btn);
+  }
+
+  function updateGamepad(){
+    const pads = navigator.getGamepads ? navigator.getGamepads() : [];
+    const gp = pads[0];
+    if(!gp) return;
+    const axX = gp.axes[0] || 0;
+    const axY = gp.axes[1] || 0;
+    setButton('LEFT', axX < -0.35 || !!gp.buttons[14]?.pressed);
+    setButton('RIGHT', axX > 0.35 || !!gp.buttons[15]?.pressed);
+    setButton('UP', axY < -0.35 || !!gp.buttons[12]?.pressed);
+    setButton('DOWN', axY > 0.35 || !!gp.buttons[13]?.pressed);
+    setButton('A', !!gp.buttons[0]?.pressed);
+    setButton('B', !!gp.buttons[1]?.pressed);
+    setButton('SELECT', !!gp.buttons[8]?.pressed);
+    setButton('START', !!gp.buttons[9]?.pressed);
+  }
+
+  const keyboard = {
+    ArrowUp:'UP', ArrowDown:'DOWN', ArrowLeft:'LEFT', ArrowRight:'RIGHT',
+    z:'A', Z:'A', x:'B', X:'B', Enter:'START', Shift:'SELECT', ' ':'START'
+  };
+
+  window.addEventListener('keydown', e => {
+    if(keyboard[e.key]){ e.preventDefault(); e.stopPropagation(); setButton(keyboard[e.key], true); }
+  }, true);
+  window.addEventListener('keyup', e => {
+    if(keyboard[e.key]){ e.preventDefault(); e.stopPropagation(); setButton(keyboard[e.key], false); }
+  }, true);
+
+  // Poll gamepad separately so NES-JS can keep its own run loop.
+  function gamepadLoop(){ updateGamepad(); requestAnimationFrame(gamepadLoop); }
+
+  fetch(romPath)
+    .then(r => { if(!r.ok) throw new Error('ROM not found: ' + romPath); return r.arrayBuffer(); })
+    .then(buffer => {
+      const rom = new NesJs.Rom(buffer);
+      nes = new NesJs.Nes();
+      nes.addEventListener('fps', fps => {
+        status.textContent = 'Running: ' + romName + ' · FPS: ' + fps.toFixed(1) + ' · Lite cycles: ' + window.SWITCHWEB_NES_CYCLES;
+      });
+      nes.setRom(rom);
+      nes.setDisplay(new NesJs.Display(canvas));
+      // Audio intentionally disabled for SwitchWebCFW performance.
+      status.textContent = 'Running: ' + romName;
+      nes.bootup();
+      gamepadLoop();
+      nes.run();
+    })
+    .catch(e => showError(String(e)));
+
+  // Browser game mode
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('selectstart', e => e.preventDefault());
+  document.addEventListener('dragstart', e => e.preventDefault());
+  document.body.style.overscrollBehavior = 'none';
+  document.body.style.touchAction = 'none';
+  history.pushState(null, '', location.href);
+  window.addEventListener('popstate', () => history.pushState(null, '', location.href));
+})();
+</script>
+</body>
+</html>
