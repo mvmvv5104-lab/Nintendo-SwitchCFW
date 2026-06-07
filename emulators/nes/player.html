@@ -6,14 +6,25 @@
 <title>SwitchWebCFW NES Player</title>
 <script src="jsnes.min.js"></script>
 <style>
-body{margin:0;background:#050505;color:white;font-family:Arial,sans-serif;text-align:center;overflow:hidden}#top{height:54px;display:flex;align-items:center;justify-content:center;gap:14px;background:#111;border-bottom:1px solid #333}#status{font-size:14px;opacity:.85}.btn{background:#222;border:1px solid #555;color:white;border-radius:8px;padding:8px 14px;text-decoration:none}.btn:focus,.btn:hover{background:#00a7e0;outline:none}canvas{margin-top:12px;width:768px;max-width:96vw;height:auto;image-rendering:pixelated;border:3px solid #444;background:#000}.help{font-size:13px;opacity:.75;margin-top:8px}#error{color:#ff7777;padding:10px;white-space:pre-wrap}
+body{margin:0;background:#050505;color:white;font-family:Arial,sans-serif;text-align:center;overflow:hidden}
+#top{height:54px;display:flex;align-items:center;justify-content:center;gap:14px;background:#111;border-bottom:1px solid #333}
+#status{font-size:14px;opacity:.85}
+.btn{background:#222;border:1px solid #555;color:white;border-radius:8px;padding:8px 14px;text-decoration:none}
+.btn:focus,.btn:hover{background:#00a7e0;outline:none}
+canvas{margin-top:12px;width:512px;max-width:96vw;height:auto;image-rendering:pixelated;border:3px solid #444;background:#000}
+#error{color:#ff7777;padding:10px;white-space:pre-wrap}
 </style>
 </head>
 <body>
-<div id="top"><a class="btn" href="index.html">Back</a><span id="status">Loading...</span></div>
+
+<div id="top">
+  <a class="btn" href="index.html">Back</a>
+  <span id="status">Loading...</span>
+</div>
+
 <canvas id="screen" width="256" height="240"></canvas>
-<div class="help">Controls: D-Pad / Left Stick = Move · A = A · B = B · + = Start · - = Select</div>
 <div id="error"></div>
+
 <script>
 (function(){
   const params = new URLSearchParams(location.search);
@@ -22,45 +33,71 @@ body{margin:0;background:#050505;color:white;font-family:Arial,sans-serif;text-a
   const errorBox = document.getElementById('error');
   const canvas = document.getElementById('screen');
   const ctx = canvas.getContext('2d');
+
+  ctx.imageSmoothingEnabled = false;
+
   const imageData = ctx.getImageData(0, 0, 256, 240);
+
   let nes = null;
   let running = false;
+  let fps = 0;
+  let fpsCounter = 0;
+  let lastFpsTime = performance.now();
 
-  function showError(msg){ errorBox.textContent = msg; status.textContent = 'Error'; }
+  function showError(msg){
+    errorBox.textContent = msg;
+    status.textContent = 'Error';
+  }
 
   if (!romPath) return showError('No ROM selected.');
-  if (!window.jsnes) return showError('NES core missing. Put jsnes.min.js in this same folder: emulators/nes/jsnes.min.js');
+  if (!window.jsnes) return showError('NES core missing. Put jsnes.min.js in this same folder.');
 
   function frame(frameBuffer){
     for (let i = 0; i < frameBuffer.length; i++) {
       const pixel = frameBuffer[i];
       const j = i * 4;
+
       imageData.data[j] = pixel & 0xFF;
       imageData.data[j + 1] = (pixel >> 8) & 0xFF;
       imageData.data[j + 2] = (pixel >> 16) & 0xFF;
       imageData.data[j + 3] = 0xFF;
     }
+
     ctx.putImageData(imageData, 0, 0);
   }
 
-  nes = new jsnes.NES({ onFrame: frame, onAudioSample: function(){} });
+  nes = new jsnes.NES({
+    onFrame: frame,
+    onAudioSample: function(){}
+  });
 
-  fetch(romPath).then(r => {
-    if (!r.ok) throw new Error('ROM not found: ' + romPath);
-    return r.arrayBuffer();
-  }).then(buf => {
-    let binary = '';
-    const bytes = new Uint8Array(buf);
-    for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
-    nes.loadROM(binary);
-    status.textContent = 'Running: ' + decodeURIComponent(romPath.split('/').pop());
-    running = true;
-    requestAnimationFrame(loop);
-  }).catch(e => showError(String(e)));
+  fetch(romPath)
+    .then(r => {
+      if (!r.ok) throw new Error('ROM not found: ' + romPath);
+      return r.arrayBuffer();
+    })
+    .then(buf => {
+      let binary = '';
+      const bytes = new Uint8Array(buf);
+
+      for (let i = 0; i < bytes.length; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+
+      nes.loadROM(binary);
+
+      status.textContent = 'Running: ' + decodeURIComponent(romPath.split('/').pop());
+
+      running = true;
+      requestAnimationFrame(loop);
+    })
+    .catch(e => showError(String(e)));
 
   function setButton(name, pressed){
     if (!nes || !window.jsnes) return;
+
     const B = jsnes.Controller;
+
     const map = {
       A: B.BUTTON_A,
       B: B.BUTTON_B,
@@ -71,46 +108,129 @@ body{margin:0;background:#050505;color:white;font-family:Arial,sans-serif;text-a
       LEFT: B.BUTTON_LEFT,
       RIGHT: B.BUTTON_RIGHT
     };
+
     const btn = map[name];
+
     if (btn === undefined) return;
-    if (pressed) nes.buttonDown(1, btn); else nes.buttonUp(1, btn);
+
+    if (pressed) {
+      nes.buttonDown(1, btn);
+    } else {
+      nes.buttonUp(1, btn);
+    }
   }
 
   const keyboard = {
-    ArrowUp:'UP', ArrowDown:'DOWN', ArrowLeft:'LEFT', ArrowRight:'RIGHT',
-    z:'A', Z:'A', x:'B', X:'B', Enter:'START', Shift:'SELECT', ' ':'START'
+    ArrowUp:'UP',
+    ArrowDown:'DOWN',
+    ArrowLeft:'LEFT',
+    ArrowRight:'RIGHT',
+    z:'A',
+    Z:'A',
+    x:'B',
+    X:'B',
+    Enter:'START',
+    Shift:'SELECT',
+    ' ':'START'
   };
-  window.addEventListener('keydown', e => { if (keyboard[e.key]) { e.preventDefault(); setButton(keyboard[e.key], true); } }, true);
-  window.addEventListener('keyup', e => { if (keyboard[e.key]) { e.preventDefault(); setButton(keyboard[e.key], false); } }, true);
+
+  window.addEventListener('keydown', e => {
+    if (keyboard[e.key]) {
+      e.preventDefault();
+      setButton(keyboard[e.key], true);
+    }
+  }, true);
+
+  window.addEventListener('keyup', e => {
+    if (keyboard[e.key]) {
+      e.preventDefault();
+      setButton(keyboard[e.key], false);
+    }
+  }, true);
 
   function updateGamepad(){
     const pads = navigator.getGamepads ? navigator.getGamepads() : [];
     const gp = pads[0];
+
     if (!gp) return;
-    const axX = gp.axes[0] || 0, axY = gp.axes[1] || 0;
+
+    const axX = gp.axes[0] || 0;
+    const axY = gp.axes[1] || 0;
+
     setButton('LEFT', axX < -0.35 || gp.buttons[14]?.pressed);
     setButton('RIGHT', axX > 0.35 || gp.buttons[15]?.pressed);
     setButton('UP', axY < -0.35 || gp.buttons[12]?.pressed);
     setButton('DOWN', axY > 0.35 || gp.buttons[13]?.pressed);
+
     setButton('A', !!gp.buttons[0]?.pressed);
     setButton('B', !!gp.buttons[1]?.pressed);
     setButton('SELECT', !!gp.buttons[8]?.pressed);
     setButton('START', !!gp.buttons[9]?.pressed);
   }
 
+  function updateFps(){
+    fpsCounter++;
+    const now = performance.now();
+
+    if (now - lastFpsTime >= 1000) {
+      fps = fpsCounter;
+      fpsCounter = 0;
+      lastFpsTime = now;
+      status.textContent = 'Running: ' + decodeURIComponent(romPath.split('/').pop()) + ' · FPS: ' + fps;
+    }
+  }
+
   function loop(){
     if (!running) return;
+
     updateGamepad();
-    try { nes.frame(); } catch(e) { running = false; showError('Core error: ' + e.message); return; }
+
+    try {
+      nes.frame();
+      updateFps();
+    } catch(e) {
+      running = false;
+      showError('Core error: ' + e.message);
+      return;
+    }
+
     requestAnimationFrame(loop);
   }
 
-  // Browser game mode
   document.addEventListener('contextmenu', e => e.preventDefault());
   document.addEventListener('selectstart', e => e.preventDefault());
+  document.addEventListener('dragstart', e => e.preventDefault());
+
+  window.addEventListener('keydown', function(e){
+    const blocked = [
+      'Backspace',
+      'Escape',
+      'BrowserBack',
+      'BrowserForward',
+      'ArrowUp',
+      'ArrowDown',
+      'ArrowLeft',
+      'ArrowRight',
+      'Space',
+      'Enter'
+    ];
+
+    if (blocked.includes(e.key)) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+  }, true);
+
+  document.body.style.overscrollBehavior = 'none';
+  document.body.style.touchAction = 'none';
+
   history.pushState(null, '', location.href);
-  window.addEventListener('popstate', () => history.pushState(null, '', location.href));
+  window.addEventListener('popstate', () => {
+    history.pushState(null, '', location.href);
+  });
 })();
 </script>
+
 </body>
 </html>
