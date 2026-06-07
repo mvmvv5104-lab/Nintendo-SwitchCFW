@@ -1,0 +1,210 @@
+<html lang="en">
+<head>
+  <title>SwitchWebCFW Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="keywords" content="switchwebcfw nintendo switch html5 games emulators javascript homebrew">
+  <meta name="description" content="SwitchWebCFW web dashboard for HTML5 games, lightweight web emulators and JavaScript homebrew on Nintendo Switch browser.">
+
+  <script src="./scripts/jquery.min.js"></script>
+  <script src="./scripts/font-awesome.js"></script>
+  <script src="./scripts/gamepad.js"></script>
+  <script src="./scripts/pages.js"></script>
+  <script src="./scripts/dns.js"></script>
+  <link rel="stylesheet" href="./styles/style.css">
+
+  <script>
+    function google() {
+      window.location.href = "https://cse.google.com/cse?cx=a013d3bbc253f4f1c";
+    }
+  </script>
+</head>
+
+<body class="light">
+  <div class="active-page" id="main-page">
+    <div id="adtop"></div>
+
+    <div class="nav">
+      <p class="ad" id="nav" down="outer-google" onclick="populateData('one')">
+        <i id="icon" class="fas fa-home"></i>
+        <span class="title">SwitchWebCFW Dashboard</span>
+      </p>
+
+      <div class="time">
+        <span id="time">00:00</span>
+      </div>
+
+      <span class="next" down="outer-google" up="outer-google" left="outer-google" right="outer-google"></span>
+    </div>
+
+    <div class="container">
+      <div class="menu">
+        <div class="outer" id="outer-google" up="nav" down="outer-url" onclick="touched(this.id)">
+          <div class="inner" id="one" onclick="populateData(this.id)"><i class="fas fa-home"></i>&#160;&#160;Home</div>
+        </div>
+
+        <div class="outer" id="outer-url" up="outer-google" down="outer-browse" onclick="touched(this.id)">
+          <div class="inner" id="two" onclick="populateData(this.id)"><i class="fas fa-gamepad"></i>&#160;&#160;Games HTML5</div>
+        </div>
+        <div class="outer" id="outer-browse" up="outer-url" down="outer-survey" onclick="touched(this.id)">
+          <div class="inner" id="five" onclick="populateData(this.id)"><i class="fas fa-mobile-alt"></i>&#160;&#160;Emulators</div>
+        </div>
+
+        <div class="outer" id="outer-survey" up="outer-browse" down="outer-links" onclick="touched(this.id)">
+          <div class="inner" id="three" onclick="populateData(this.id)"><i class="fas fa-code"></i>&#160;&#160;Homebrew JS</div>
+        </div>
+
+        <div class="outer" id="outer-links" up="outer-survey" down="outer-links" onclick="touched(this.id)">
+          <div class="inner" id="four" onclick="populateData(this.id)"><i class="fas fa-folder"></i>&#160;&#160;Apps</div>
+        </div>
+      </div>
+
+      <div class="main" id="content" tabindex="-1">
+        <h2>Welcome to SwitchWebCFW</h2>
+        <p><strong>SwitchWebCFW</strong> is a web-based dashboard for Nintendo Switch, designed to run HTML5 games, lightweight web emulators, and JavaScript-powered homebrew applications.</p>
+        <br>
+        <div class="flex">
+          <div class="link" id="home-games" right="home-emus" down="home-homebrew" left="outer-google"><a href="#" tabindex="-1" onclick="populateData('two'); return false;">Games HTML5</a></div>
+          <div class="link" id="home-emus" left="home-games" right="home-apps"><a href="#" tabindex="-1" onclick="populateData('five'); return false;">Emulators</a></div>
+          <div class="link" id="home-apps" left="home-emus"><a href="#" tabindex="-1" onclick="populateData('four'); return false;">Apps</a></div>
+          <div class="link" id="home-homebrew" up="home-games" left="outer-google"><a href="#" tabindex="-1" onclick="populateData('three'); return false;">Homebrew JS</a></div>
+        </div>
+      </div>
+
+      <span class="inputbuttons" style="display:none;"></span>
+    </div>
+
+    <div id="second-page" style="display:none;"></div>
+
+    <div id="sections" style="display:none;">
+      <div id="tab-one">
+        <h2>Home</h2>
+        <p>Welcome to <strong>SwitchWebCFW</strong>, SwitchWebCFW is an experimental web environment for Nintendo Switch.</p>
+        <p>From here, you can access HTML5 games, lightweight web emulators, applications, and experimental homebrew software built with JavaScript.</p>
+        <br>
+        <div class="flex">
+          <div class="link" id="inicio-juegos" left="outer-google" right="inicio-emuladores" down="inicio-homebrew"><a tabindex="-1" href="#" onclick="populateData('two'); return false;">Games HTML5</a></div>
+          <div class="link" id="inicio-emuladores" left="inicio-juegos" right="inicio-apps"><a tabindex="-1" href="#" onclick="populateData('five'); return false;">Emulators</a></div>
+          <div class="link" id="inicio-apps" left="inicio-emuladores"><a tabindex="-1" href="#" onclick="populateData('four'); return false;">Apps</a></div>
+          <div class="link" id="inicio-homebrew" up="inicio-juegos" left="outer-google"><a tabindex="-1" href="#" onclick="populateData('three'); return false;">Homebrew JS</a></div>
+        </div>
+        <span class="select-next" selectnext="Start-Games"></span>
+      </div>
+
+      <div id="tab-two">
+        <h2>Games HTML5</h2>
+        <p>HTML5 and JavaScript games designed to test performance, compatibility, and controller support within the Nintendo Switch web browser. </p>
+        <div class="flex">
+          <div class="link" id="game-mario" left="outer-url" right="game-snake" down="game-test"><a tabindex="-1" href="./games/mario/index.html">Mario HTML5</a></div>
+          <div class="link" id="game-snake" left="game-mario" right="game-pong"><a tabindex="-1" href="./games/snake/index.html">Snake</a></div>
+          <div class="link" id="game-pong" left="game-snake" right="game-tetris"><a tabindex="-1" href="./games/pong/index.html">Pong</a></div>
+          <div class="link" id="game-tetris" left="game-pong"><a tabindex="-1" href="./games/tetris/index.html">Tetris</a></div>
+          <div class="link" id="game-test" left="outer-url" up="game-mario"><a tabindex="-1" href="./games/controller-test/index.html">Gamepad Test</a></div>
+        </div>
+        <span class="select-next" selectnext="game-mario"></span>
+      </div>
+
+      <div id="tab-three">
+        <h2>Homebrew JS</h2>
+        <p>Experimental JavaScript-based tools designed to run inside the Nintendo Switch hidden web browser.</p>
+        <div class="flex">
+          <div class="link" id="hb-gamepad" left="outer-survey" right="hb-webgl"><a tabindex="-1" href="./homebrew/gamepad/index.html">Gamepad Inspector</a></div>
+          <div class="link" id="hb-webgl" left="hb-gamepad"><a tabindex="-1" href="./homebrew/webgl-test/index.html">WebGL Test</a></div>
+        </div>
+        <span class="select-next" selectnext="hb-gamepad"></span>
+      </div>
+
+      <div id="tab-four">
+        <h2>Apps</h2>
+        <p>Web-based utilities designed for the SwitchWebCFW dashboard.</p>
+        <div class="flex">
+          <div class="link" id="app-browser" left="outer-links" right="app-notes" down="app-links"><a tabindex="-1" href="https://cse.google.com/cse?cx=a013d3bbc253f4f1c">Navegador Web</a></div>
+          <div class="link" id="app-notes" left="app-browser" right="app-calc"><a tabindex="-1" href="./apps/notepad/index.html">Bloc de notas</a></div>
+          <div class="link" id="app-calc" left="app-notes"><a tabindex="-1" href="./apps/calculator/index.html">Calculadora</a></div>
+          <div class="link" id="app-links" up="app-browser" left="outer-links"><a tabindex="-1" href="./apps/links/index.html">Links útiles</a></div>
+        </div>
+        <span class="select-next" selectnext="app-browser"></span>
+      </div>
+
+      <div id="tab-five">
+        <h2>Emulators</h2>
+        <p>A collection of lightweight web emulators developed with JavaScript and WebAssembly technology.</p>
+        <div class="flex">
+          <div class="link" id="emu-gb" left="outer-browse" right="emu-nes" down="emu-sms"><a tabindex="-1" href="./emulators/gb/index.html">Game Boy</a></div>
+          <div class="link" id="emu-nes" left="emu-gb" right="emu-chip8" down="emu-test"><a tabindex="-1" href="./emulators/nes/index.html">NES</a></div>
+          <div class="link" id="emu-chip8" left="emu-nes"><a tabindex="-1" href="./emulators/chip8/index.html">CHIP-8</a></div>
+          <div class="link" id="emu-sms" up="emu-gb" left="outer-browse" right="emu-test"><a tabindex="-1" href="./emulators/sms/index.html">Master System</a></div>
+          <div class="link" id="emu-test" up="emu-nes" left="emu-sms"><a tabindex="-1" href="./emulators/test/index.html">Emu Test</a></div>
+        </div>
+        <span class="select-next" selectnext="emu-gb"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // SwitchWebCFW: títulos correctos y menú limpio sin restos de SwitchBru.
+    (function(){
+      var titles = {
+        one: 'Home',
+        two: 'Games HTML5',
+        three: 'Homebrew JS',
+        four: 'Apps',
+        five: 'Emulators',
+        nav: 'SwitchWebCFW Dashboard'
+      };
+
+      var selectedMap = {
+        one: 'outer-google',
+        two: 'outer-url',
+        three: 'outer-survey',
+        four: 'outer-links',
+        five: 'outer-browse'
+      };
+
+      var oldPopulate = window.populateData;
+      window.populateData = function(id){
+        var divLoad = true;
+        var selected = selectedMap[id] || 'outer-google';
+
+        if (id === 'nav') {
+          $('.title').html('SwitchWebCFW Dashboard');
+          return false;
+        }
+
+        if ($('#tab-' + id).length) {
+          $('#content').html($('#tab-' + id).html());
+          $('#content').scrollTop(0);
+          $('.next').attr('up', selected).attr('down', selected).attr('left', selected).attr('right', selected);
+          $('.inner').removeClass('inner-active');
+          $('#' + id).addClass('inner-active');
+          $('.title').html(titles[id] || 'SwitchWebCFW Dashboard');
+          history.pushState({page: 'same', tab: selected}, '', '');
+          return false;
+        }
+
+        if (typeof oldPopulate === 'function') {
+          return oldPopulate.apply(this, arguments);
+        }
+      };
+
+      // Modo juego suave: reduce acciones accidentales del navegador.
+      document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+      document.addEventListener('selectstart', function(e){ e.preventDefault(); });
+      document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+      window.addEventListener('keydown', function(e){
+        var blocked = ['Backspace','Escape','BrowserBack','BrowserForward','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','Enter'];
+        if (blocked.indexOf(e.key) !== -1) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+      }, true);
+      document.body.style.overscrollBehavior = 'none';
+      document.body.style.touchAction = 'none';
+
+      $('.title').html('SwitchWebCFW Dashboard');
+      $('#one').addClass('inner-active');
+    })();
+  </script>
+</body>
+</html>
