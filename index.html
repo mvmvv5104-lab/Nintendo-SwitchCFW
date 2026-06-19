@@ -18,6 +18,34 @@
       window.location.href = "https://cse.google.com/cse?cx=a013d3bbc253f4f1c";
     }
   </script>
+
+  <style>
+    .homebrew-runner {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 14px 0;
+      align-items: center;
+    }
+    .hb-input {
+      min-width: 360px;
+      max-width: 620px;
+      flex: 1;
+      padding: 12px;
+      font-size: 18px;
+      border: 0;
+      background: #f8f8f8;
+      color: #111;
+    }
+    .hb-btn {
+      padding: 12px 18px;
+      font-size: 18px;
+      border: 0;
+      background: #f8f8f8;
+      color: blue;
+    }
+  </style>
+
 </head>
 
 <body class="light">
@@ -95,33 +123,38 @@
         <h2>Games HTML5</h2>
         <p>HTML5 and JavaScript games designed to test performance, compatibility, and controller support within the Nintendo Switch web browser. </p>
         <div class="flex">
-          <div class="link" id="game-mario" left="outer-url" right="game-snake" down="game-test"><a tabindex="-1" href="./games/mario/index.html">Mario HTML5</a></div>
+          <div class="link" id="game-mario" left="outer-url" right="game-snake" ><a tabindex="-1" href="./games/mario/index.html">Mario HTML5</a></div>
           <div class="link" id="game-snake" left="game-mario" right="game-pong"><a tabindex="-1" href="./games/snake/index.html">Snake</a></div>
           <div class="link" id="game-pong" left="game-snake" right="game-tetris"><a tabindex="-1" href="./games/pong/index.html">Pong</a></div>
           <div class="link" id="game-tetris" left="game-pong"><a tabindex="-1" href="./games/tetris/index.html">Tetris</a></div>
-          <div class="link" id="game-test" left="outer-url" up="game-mario"><a tabindex="-1" href="./games/controller-test/index.html">Gamepad Test</a></div>
         </div>
         <span class="select-next" selectnext="game-mario"></span>
       </div>
 
       <div id="tab-three">
         <h2>Homebrew JS</h2>
-        <p>Experimental JavaScript-based tools designed to run inside the Nintendo Switch hidden web browser.</p>
-        <div class="flex">
-          <div class="link" id="hb-gamepad" left="outer-survey" right="hb-webgl"><a tabindex="-1" href="./homebrew/gamepad/index.html">Gamepad Inspector</a></div>
-          <div class="link" id="hb-webgl" left="hb-gamepad"><a tabindex="-1" href="./homebrew/webgl-test/index.html">WebGL Test</a></div>
+        <p>Ejecuta scripts JavaScript externos desde enlaces RAW. Recomendado: Pastebin RAW.</p>
+
+        <div class="homebrew-runner">
+          <input id="pastebinRawInput" class="hb-input" placeholder="pastebin.com/raw/XXXXXX o XXXXXX">
+          <button class="hb-btn" onclick="runPastebinJS()">Ejecutar JS</button>
+          <button class="hb-btn" onclick="clearHomebrewLog()">Limpiar</button>
         </div>
-        <span class="select-next" selectnext="hb-gamepad"></span>
+
+        <p style="font-size:14px;color:#555;">
+          Formatos aceptados: <strong>pastebin.com/raw/XXXXXX</strong> o solo el código <strong>XXXXXX</strong>.
+        </p>
+
+        <pre id="homebrewLog" style="background:#f4f4f4;border:1px solid #ddd;padding:10px;min-height:80px;white-space:pre-wrap;font-size:13px;">Esperando script...</pre>
+
+        <span class="select-next" selectnext="pastebinRawInput"></span>
       </div>
 
       <div id="tab-four">
         <h2>Apps</h2>
         <p>Web-based utilities designed for the SwitchWebCFW dashboard.</p>
         <div class="flex">
-          <div class="link" id="app-browser" left="outer-links" right="app-notes" down="app-links"><a tabindex="-1" href="https://cse.google.com/cse?cx=a013d3bbc253f4f1c">Navegador Web</a></div>
-          <div class="link" id="app-notes" left="app-browser" right="app-calc"><a tabindex="-1" href="./apps/notepad/index.html">Bloc de notas</a></div>
-          <div class="link" id="app-calc" left="app-notes"><a tabindex="-1" href="./apps/calculator/index.html">Calculadora</a></div>
-          <div class="link" id="app-links" up="app-browser" left="outer-links"><a tabindex="-1" href="./apps/links/index.html">Links útiles</a></div>
+          <div class="link" id="app-browser" left="outer-links"  ><a tabindex="-1" href="https://cse.google.com/cse?cx=a013d3bbc253f4f1c">Navegador Web</a></div>
         </div>
         <span class="select-next" selectnext="app-browser"></span>
       </div>
@@ -131,15 +164,84 @@
         <p>A collection of lightweight web emulators developed with JavaScript and WebAssembly technology.</p>
         <div class="flex">
           <div class="link" id="emu-gb" left="outer-browse" right="emu-nes" down="emu-sms"><a tabindex="-1" href="./emulators/gb/index.html">Game Boy</a></div>
-          <div class="link" id="emu-nes" left="emu-gb" right="emu-chip8" down="emu-test"><a tabindex="-1" href="./emulators/nes/index.html">NES</a></div>
+          <div class="link" id="emu-nes" left="emu-gb" right="emu-chip8" ><a tabindex="-1" href="./emulators/nes/index.html">NES</a></div>
           <div class="link" id="emu-chip8" left="emu-nes"><a tabindex="-1" href="./emulators/chip8/index.html">CHIP-8</a></div>
-          <div class="link" id="emu-sms" up="emu-gb" left="outer-browse" right="emu-test"><a tabindex="-1" href="./emulators/sms/index.html">Master System</a></div>
-          <div class="link" id="emu-test" up="emu-nes" left="emu-sms"><a tabindex="-1" href="./emulators/test/index.html">Emu Test</a></div>
+          <div class="link" id="emu-sms" up="emu-gb" left="outer-browse" ><a tabindex="-1" href="./emulators/sms/index.html">Master System</a></div>
         </div>
         <span class="select-next" selectnext="emu-gb"></span>
       </div>
     </div>
   </div>
+
+
+  <script>
+    function normalizePastebinUrl(value) {
+      var raw = (value || '').trim();
+
+      if (!raw) {
+        throw new Error('Debes ingresar un enlace o código de Pastebin.');
+      }
+
+      if (raw.indexOf('http://') === 0) {
+        raw = raw.replace('http://', 'https://');
+      }
+
+      if (raw.indexOf('https://pastebin.com/raw/') === 0) {
+        return raw;
+      }
+
+      if (raw.indexOf('pastebin.com/raw/') === 0) {
+        return 'https://' + raw;
+      }
+
+      if (/^[a-zA-Z0-9]+$/.test(raw)) {
+        return 'https://pastebin.com/raw/' + raw;
+      }
+
+      throw new Error('Solo se permite Pastebin RAW.');
+    }
+
+    function homebrewLog(text) {
+      var box = document.getElementById('homebrewLog');
+      if (box) box.textContent = text;
+    }
+
+    function clearHomebrewLog() {
+      homebrewLog('Esperando script...');
+    }
+
+    function runPastebinJS() {
+      try {
+        var input = document.getElementById('pastebinRawInput');
+        var url = normalizePastebinUrl(input.value);
+
+        homebrewLog('Descargando script...\n' + url);
+
+        fetch(url)
+          .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.text();
+          })
+          .then(function(code) {
+            if (!code || code.length < 1) throw new Error('El script está vacío.');
+
+            homebrewLog('Ejecutando script...\n\n' + code.slice(0, 500));
+
+            var script = document.createElement('script');
+            script.textContent = code;
+            document.body.appendChild(script);
+
+            homebrewLog('Script ejecutado correctamente.');
+          })
+          .catch(function(err) {
+            homebrewLog('ERROR: ' + err.message);
+          });
+      } catch (e) {
+        homebrewLog('ERROR: ' + e.message);
+      }
+    }
+  </script>
+
 
   <script>
     // SwitchWebCFW: títulos correctos y menú limpio sin restos de SwitchBru.
